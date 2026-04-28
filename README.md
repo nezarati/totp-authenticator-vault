@@ -5,6 +5,14 @@ Offline-ready TOTP authenticator with encrypted backups (AES-GCM), QR scanning, 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Works offline](https://img.shields.io/badge/offline-ready-brightgreen)
 
+## 🌐 Live Demo
+
+Experience the app directly in your browser:
+
+👉 **[TOTP Authenticator Vault - Live Demo](https://nezarati.github.io/TOTP-Authenticator-Vault/)**
+
+This is a fully functional, client-side application. Your secrets and keys never leave your device.
+
 ## Features
 
 - **Full Google Authenticator compatibility** – supports SHA1, SHA256, SHA512, 6/7/8 digits, 30/60s periods.
@@ -17,7 +25,7 @@ Offline-ready TOTP authenticator with encrypted backups (AES-GCM), QR scanning, 
 - **Works 100% offline** – no internet required after first load.
 - **Mobile‑first design** – responsive, touch‑friendly, fits iPhone/Android perfectly.
 
-## 🚀 How to use
+## How to use
 
 1. **Open the app** – just serve `index.html` or use the live demo (if hosted).
 2. **Add a key** – paste a `otpauth://` URI or a Base32 secret, optionally set a custom account name.
@@ -38,7 +46,7 @@ Offline-ready TOTP authenticator with encrypted backups (AES-GCM), QR scanning, 
 2. Place it on any web server or open directly with your browser (`file://` protocol works).
 3. For the best experience, serve over HTTPS (required for camera access in QR scanner).
 
-## 🧪 Supported URI parameters
+## Supported URI parameters
 
 The app respects the official `otpauth://totp/` specification:
 
@@ -52,7 +60,7 @@ The app respects the official `otpauth://totp/` specification:
 Example:  
 `otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&algorithm=SHA256&digits=8&period=30`
 
-## 🛠️ Development
+## Development
 
 This is a single‑file HTML/CSS/JS app. No build step, no dependencies except:
 - [`jsQR`](https://github.com/cozmo/jsQR) for QR scanning (loaded via CDN).
