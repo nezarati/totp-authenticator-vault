@@ -8,7 +8,7 @@ Offline-ready TOTP authenticator with encrypted backups (AES-GCM), QR scanning, 
 
 Experience the app directly in your browser:
 
-👉 **[TOTP Authenticator Vault - Live Demo](https://nezarati.github.io/TOTP-Authenticator-Vault/)**
+👉 **[TOTP Authenticator Vault - Live Demo](https://nezarati.github.io/totp-authenticator-vault/)**
 
 This is a fully functional, client-side application. Your secrets and keys never leave your device.
 
