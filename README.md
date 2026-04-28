@@ -1,14 +1,11 @@
 # TOTP-Authenticator-Vault
 Offline-ready TOTP authenticator with encrypted backups (AES-GCM), QR scanning, SHA1/SHA256/SHA512 support, and a clean mobile interface. Import/export .2fas files, copy codes with countdown ring, and manage 2FA tokens securely. No server, no tracking.
-# 🔐 TOTP Authenticator Vault
-
-**A privacy-first, offline-ready web app for managing all your TOTP 2FA tokens.**  
-No server, no tracking, no data leaks – just your encrypted vault, stored locally.
+# TOTP Authenticator Vault
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Works offline](https://img.shields.io/badge/offline-ready-brightgreen)
 
-## ✨ Features
+## Features
 
 - **Full Google Authenticator compatibility** – supports SHA1, SHA256, SHA512, 6/7/8 digits, 30/60s periods.
 - **Encrypted backups** – export/import `.2fas` files with AES‑GCM + PBKDF2 (150k iterations).
@@ -28,14 +25,14 @@ No server, no tracking, no data leaks – just your encrypted vault, stored loca
 4. **Manage** – copy codes with the button (ring shows remaining time), tap the code to hide/show, click the name to edit, delete with the red button.
 5. **Back up** – export all keys with a strong password to a `.2fas` file. Import the same file to restore on any device.
 
-## 🔒 Security & Encryption
+## Security & Encryption
 
 - All keys are stored **only in your browser’s memory** (no local storage unless you export).
 - Exported files are encrypted using **AES‑GCM** with a password stretched via **PBKDF2 (150k iterations, SHA‑256)**.
 - The default password (`2fas-default-encryption-key-2024`) is **weak** – use your own strong password for real security.
 - The app never sends any data over the network – it’s a pure static web app.
 
-## 📦 Installation (self‑host)
+## Installation (self‑host)
 
 1. Download `index.html` from this repo.
 2. Place it on any web server or open directly with your browser (`file://` protocol works).
