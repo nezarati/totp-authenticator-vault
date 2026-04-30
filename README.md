@@ -1,71 +1,99 @@
-# TOTP-Authenticator-Vault
-Offline-ready TOTP authenticator with encrypted backups (AES-GCM), QR scanning, SHA1/SHA256/SHA512 support, and a clean mobile interface. Import/export .2fas files, copy codes with countdown ring, and manage 2FA tokens securely. No server, no tracking.
+# Vault OTP + Password Manager
 
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+**Offline‑ready 2FA authenticator and secure credential vault**  
+Encrypted backups (AES‑GCM), QR scanning, search, dark/light theme, and full password manager with CSV import.  
+**No server, no tracking, works offline.**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![Works offline](https://img.shields.io/badge/offline-ready-brightgreen)
 
-## 🌐 Live Demo
+## **Live Demo**
 
-👉 **[TOTP Authenticator Vault - Live Demo](https://nezarati.github.io/totp-authenticator-vault/)**
+👉 **https://nezarati.github.io/totp-authenticator-vault/** 👈
 
-This is a fully functional, client-side application. Your secrets and keys never leave your device.
+*This is a fully functional, client‑side application. Your secrets and keys never leave your device.*
 
 ![App Screenshot](screenshot.png)
+
+---
+
 ## Features
 
-- **Full Google Authenticator compatibility** – supports SHA1, SHA256, SHA512, 6/7/8 digits, 30/60s periods.
-- **Encrypted backups** – export/import `.2fas` files with AES‑GCM + PBKDF2 (150k iterations).
-- **QR code scanning** – add keys by scanning `otpauth://` QR codes directly from your camera.
-- **Hide/Show OTP codes** – tap any 6‑digit code to blur it for privacy.
-- **Countdown ring inside copy button** – visual progress and seconds left, with color warning at 5/10s.
-- **Edit account names** – click on any name to rename.
-- **Reveal secret key** – see the Base32 secret without auto‑copy (optional manual copy).
-- **Works 100% offline** – no internet required after first load.
-- **Mobile‑first design** – responsive, touch‑friendly, fits iPhone/Android perfectly.
+### TOTP Authenticator (2FA)
 
-## How to use
+- Fully compatible with Google Authenticator and any `otpauth://` URI.
+- Supports **SHA1, SHA256, SHA512** algorithms, **6/7/8 digits**, and **30/60s periods**.
+- Add keys manually (Base32 secret) or by **scanning QR codes** with your camera.
+- **Tap the 6‑digit code** to hide or show it (privacy).
+- **Copy button** with a **live countdown ring** – shows remaining seconds and changes colour when low.
+- **Click any account name** to edit the name or secret; delete is inside the same popup.
+- Clean minimal design – no distracting metadata under the code.
 
-1. **Open the app** – just serve `index.html` or use the live demo (if hosted).
-2. **Add a key** – paste a `otpauth://` URI or a Base32 secret, optionally set a custom account name.
-3. **Scan a QR** – click the camera button and align the code.
-4. **Manage** – copy codes with the button (ring shows remaining time), tap the code to hide/show, click the name to edit, delete with the red button.
-5. **Back up** – export all keys with a strong password to a `.2fas` file. Import the same file to restore on any device.
+### Account Password Manager
+
+- Store **website name, username, password, and optional URL**.
+- **Click the title** of any entry to edit or delete it.
+- **Tap the password field** to reveal or hide it (like TOTP codes).
+- Copy username, password, or URL with one click.
+- **Search** across both TOTP accounts and password entries (filter by name, username, URL).
+
+### Import & Export (Encrypted JSON)
+
+- Export your **entire vault** (TOTP + passwords) to a **password‑protected JSON file**.
+- Encryption: **AES‑GCM** with **PBKDF2** (150k iterations, SHA‑256).
+- **Optional default password** (`vault-default-key`) – convenient for testing, but you should use a strong custom password for real security.
+- When you import an encrypted JSON file, the app **first tries the default password automatically**; if that fails, it asks you to enter the password.
+- Also supports **legacy plain JSON arrays** (TOTP only).
+
+### CSV Import (Chrome passwords)
+
+- Import passwords directly from a **Google Chrome‑exported CSV** file.
+- Expected columns (case‑insensitive): `name`, `url`, `username`, `password`.
+- Each login becomes a credential entry.
+
+### Additional Features
+
+- **Global search** – type anywhere to filter both lists.
+- **Unsaved changes warning** – alerts you before closing the page if modifications are not exported.
+- **Dark / Light theme** – follows system preference by default, with a manual toggle (🌙/☀️ icon).
+- **Drag & drop** – drop a `.json` or `.csv` file anywhere on the page to import.
+- **QR code scanning** (jsQR library) – loads **only on first use** to avoid unnecessary network requests.
+- **Clipboard copy** for all sensitive data (TOTP codes, passwords, secrets) with friendly toasts.
+- **Mobile‑first responsive design** – works perfectly on phones, tablets, and desktops.
+
+---
+
+## How to Use
+
+1. **Open the app** – serve `index.html` or use the [live demo](#).
+2. **Add a TOTP key** – click `+ Add` under *Authenticator (TOTP)*, paste a secret or URI, or scan a QR code.
+3. **Add a password** – click `+ Add` under *Account Password Manager*, fill the form.
+4. **Edit anything** – click on any title (TOTP account name or credential name) to open the edit popup.
+5. **Search** – use the search bar at the top to quickly find accounts or logins.
+6. **Back up your vault** – click `Export`, choose a strong password (or tick “Use default” for convenience), save the `.json` file.
+7. **Restore** – click `Import`, select your `.json` file. If it was encrypted with a custom password, type it when prompted.
+
+---
 
 ## Security & Encryption
 
-- All keys are stored **only in your browser’s memory** (no local storage unless you export).
-- Exported files are encrypted using **AES‑GCM** with a password stretched via **PBKDF2 (150k iterations, SHA‑256)**.
-- The default password (`2fas-default-encryption-key-2024`) is **weak** – use your own strong password for real security.
-- The app never sends any data over the network – it’s a pure static web app.
+- All data stays **only in your browser’s memory** – nothing is sent over the network.
+- Exported files are **encrypted** before leaving your device.
+- The **default password** is intentionally weak (`vault-default-key`). Only use it for testing or on trusted devices.
+- Web Crypto API (native) is used for all cryptographic operations.
+- QR scanning uses a CDN for `jsQR`, but the library is loaded **lazily** – if you are offline, scanning will gracefully fail with a friendly error.
 
-## Installation (self‑host)
+---
 
-1. Download `index.html` from this repo.
-2. Place it on any web server or open directly with your browser (`file://` protocol works).
-3. For the best experience, serve over HTTPS (required for camera access in QR scanner).
+## Supported File Formats
 
-## Supported URI parameters
+### Encrypted JSON (`.json`)
 
-The app respects the official `otpauth://totp/` specification:
-
-| Parameter      | Supported values                          |
-|----------------|-------------------------------------------|
-| `secret`       | Base32 (required)                         |
-| `algorithm`    | SHA1, SHA256, SHA512 (default SHA1)       |
-| `digits`       | 6, 7, 8 (default 6)                       |
-| `period`       | 30, 60 (default 30)                       |
-
-Example:  
-`otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&algorithm=SHA256&digits=8&period=30`
-
-## Development
-
-This is a single‑file HTML/CSS/JS app. No build step, no dependencies except:
-- [`jsQR`](https://github.com/cozmo/jsQR) for QR scanning (loaded via CDN).
-- Web Crypto API (native).
-
-To run locally:
-```bash
-git clone https://github.com/yourusername/totp-authenticator-vault.git
-cd totp-authenticator-vault
-# open index.html in your browser
+Structure:
+```json
+{
+  "version": 1,
+  "salt": "...",
+  "iv": "...",
+  "ciphertext": "..."
+}
