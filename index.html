@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Vault OTP · Credentials Hub</title>
+    <title>Vault</title>
     <style>
         * {
             margin: 0;
@@ -448,7 +448,7 @@
 <div class="drag-overlay" id="dragOverlay"><div class="drag-overlay-content"><div style="font-size:44px;">📁</div><p style="margin-top:12px;">Drop encrypted .json file</p><small style="color:#aaa;">password may be required</small></div></div>
 <div class="app-container">
     <div class="header">
-        <div class="header-left"><div class="logo-icon">⚡</div><h1>OTP</h1></div>
+        <div class="header-left"><div class="logo-icon">⚡</div><h1>Vault</h1></div>
         <div class="header-actions">
             <button class="btn btn-outline btn-sm" id="btnImport">📥 Import</button>
             <button class="btn btn-outline btn-sm" id="btnExport">📤 Export</button>
@@ -476,7 +476,7 @@
 
 <!-- Modals -->
 <div class="modal-overlay" id="qrModal" style="display:none;"><div class="modal"><h3>📷 Scan QR code</h3><div class="qr-video-container"><video id="qrVideo" autoplay playsinline muted></video><div class="qr-scan-region"></div></div><p id="qrStatus" class="text-muted" style="margin-top:8px;">Starting camera...</p><div class="btn-row"><button class="btn btn-outline btn-sm" id="btnCloseQR">Cancel</button></div></div></div>
-<div class="modal-overlay" id="exportModal" style="display:none;"><div class="modal"><h3>🔒 Export encrypted vault</h3><input type="password" id="exportPassword" placeholder="Create password"><input type="password" id="exportPasswordConfirm" placeholder="Confirm password"><label style="display:flex;gap:10px;margin:12px 0;"><input type="checkbox" id="useDefaultExport"> Use default password</label><div id="exportWarning" class="warning-banner" style="display:none;">Default: "vault-default-key" — convenience over security</div><div class="btn-row"><button class="btn btn-outline btn-sm" id="btnCloseExport">Cancel</button><button class="btn btn-accent btn-sm" id="btnConfirmExport">Export .json</button></div></div></div>
+<div class="modal-overlay" id="exportModal" style="display:none;"><div class="modal"><h3>🔒 Export encrypted vault</h3><input type="password" id="exportPassword" placeholder="Create password"><input type="password" id="exportPasswordConfirm" placeholder="Confirm password"><label style="display:flex;gap:10px;margin:12px 0;"><input type="checkbox" id="useDefaultExport"> Use default password</label><div id="exportWarning" class="warning-banner" style="display:none;">Default: "vault_master_keystone" — convenience over security</div><div class="btn-row"><button class="btn btn-outline btn-sm" id="btnCloseExport">Cancel</button><button class="btn btn-accent btn-sm" id="btnConfirmExport">Export .json</button></div></div></div>
 <div class="modal-overlay" id="secretModal" style="display:none;"><div class="modal"><h3>🔑 Secret Key (Base32)</h3><div class="secret-display" id="secretDisplayValue"></div><div class="btn-row"><button class="btn btn-outline btn-sm" id="btnCopySecret">📋 Copy secret</button><button class="btn btn-accent btn-sm" id="btnCloseSecret">Close</button></div></div></div>
 <!-- Edit TOTP Modal -->
 <div class="modal-overlay" id="editTotpModal" style="display:none;"><div class="modal"><h3>✏️ Edit TOTP Key</h3><input type="hidden" id="editTotpId"><input type="text" id="editTotpName" placeholder="Account name"><input type="text" id="editTotpSecret" placeholder="Secret (Base32)"><div class="btn-row"><button class="btn btn-outline btn-sm btn-danger" id="deleteTotpBtn">🗑 Delete</button><button class="btn btn-outline btn-sm" id="btnCloseEditTotp">Cancel</button><button class="btn btn-accent btn-sm" id="btnSaveEditTotp">Save</button></div></div></div>
@@ -509,7 +509,7 @@
     let pendingImportFile = null;
     let qrStream = null, qrScanning = false;
     let unsavedChanges = false;
-    const DEFAULT_PASSWORD = 'vault-default-key';
+    const DEFAULT_PASSWORD = 'vault_master_keystone';
 
     const $ = s => document.querySelector(s);
     const totpGrid = $('#totpGrid');
